@@ -1,9 +1,9 @@
 "use client";
 
 import { useState } from "react";
-import { NoteForm } from "./note-form";
-import { NoteList } from "./note-list";
-import { FilterManager } from "./filter-manager";
+import { NoteForm } from "./create/note-form";
+import { NoteList } from "./view/note-list";
+import { FilterManager } from "./create/filter-manager";
 import notesData from "../assets/notes.json";
 export type Filter = {
   region: string[];
@@ -20,7 +20,7 @@ export type Note = {
   filters: unknown;
 };
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../components/ui/tabs";
 
 const NoteApp = () => {
   const [notes, setNotes] = useState<Note[]>(notesData);

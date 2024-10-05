@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Note } from "./note-app";
+import { Note } from "../note-app";
 
 type NoteCardProps = {
   note: Note;
@@ -51,8 +51,6 @@ export function NoteCard({ note }: NoteCardProps) {
             <Input
               value={description}
               onChange={handleDescriptionChange}
-              fullWidth
-              multiline
             />
             <div>
               {tags.map((tag, index) => (

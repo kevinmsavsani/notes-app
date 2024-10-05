@@ -1,8 +1,7 @@
-import { useState, useMemo, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { MultiSelectCombobox } from "@/components/multicombobox-shadcn";
-import { Filter } from "./note-app";
+import { Filter } from "../note-app";
 
 type FilterSectionProps = {
   filters: Partial<Filter>;

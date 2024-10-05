@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from "react";
 import { FilterSection } from "./filter-section";
 import GroupCard from "./group-card";
-import { Note, Filter } from "./note-app";
+import { Note, Filter } from "../note-app";
 
 type NoteListProps = {
   notes: Note[];

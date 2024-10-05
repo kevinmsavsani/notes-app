@@ -1,5 +1,5 @@
 import Navbar from "./components/navbar";
-import NoteApp from "./components/note-app";
+import NoteApp from "./containers/note-app";
 
 function App() {
   return (
