@@ -1,12 +1,18 @@
 import { ChevronDown, ChevronRight, Plus } from "lucide-react";
 import { NoteCard } from "./note-card";
 import { Note } from "./note-app";
+import { useState } from "react";
+import { Card, CardContent } from "./ui/card";
+import { Input } from "./ui/input";
+import { Badge } from "./ui/badge";
+import { Button } from "./ui/button";
 
 type GroupCardProps = {
   groupedNotes: { [key: string]: Note[] };
   toggleGroup: (key: string) => void;
   openGroups: { [key: string]: boolean };
   groupBy: (array: Note[], key: string) => { [key: string]: Note[] };
+  addNote: (note: Omit<Note, "id">) => void;
 };
 
 export default function GroupCard({
@@ -14,7 +20,49 @@ export default function GroupCard({
   toggleGroup,
   openGroups,
   groupBy,
+  addNote,
 }: GroupCardProps) {
+  const [isAddingNote, setIsAddingNote] = useState(false);
+  const [newNoteDescription, setNewNoteDescription] = useState("");
+  const [newNoteTags, setNewNoteTags] = useState([""]);
+  const [newfilters, setNewfilters] = useState({
+    region: '',
+    rating: '',
+    brand: '',
+    category: '',
+    section: ''
+  });
+  const handleAddNoteToggle = () => {
+    setIsAddingNote(!isAddingNote);
+  };
+
+  const handleNewNoteDescriptionChange = (e) => {
+    setNewNoteDescription(e.target.value);
+  };
+
+  const handleNewNoteTagChange = (index, newTag) => {
+    const newTags = [...newNoteTags];
+    newTags[index] = newTag;
+    setNewNoteTags(newTags);
+  };
+
+  const handleNewNoteTagAdd = () => {
+    setNewNoteTags([...newNoteTags, ""]);
+  };
+
+  const handleNewNoteTagDelete = (index) => {
+    const newTags = newNoteTags.filter((_, i) => i !== index);
+    setNewNoteTags(newTags);
+  };
+
+  const handleSaveNewNote = () => {
+    addNote({
+      description: newNoteDescription,
+      tags: newNoteTags,
+      filters: newfilters
+    })
+    setIsAddingNote(false);
+  };
   return (
     <>
       {Object.entries(groupedNotes).map(([region, regionNotes]) => {
@@ -126,9 +174,7 @@ export default function GroupCard({
                                                       </h6>
                                                     </div>
                                                     <button
-                                                      onClick={() =>
-                                                        addNote(sectionKey)
-                                                      }
+                                                      onClick={() => {handleAddNoteToggle(); setNewfilters({ region, rating, brand, category, section })}}
                                                       className="ml-2 p-1 bg-blue-500 text-white rounded-full"
                                                     >
                                                       <Plus className="h-4 w-4" />
@@ -143,6 +189,75 @@ export default function GroupCard({
                                                             note={note}
                                                           />
                                                         )
+                                                      )}
+                                                      {isAddingNote && (
+                                                        <Card>
+                                                          <CardContent className="p-2">
+                                                            <Input
+                                                              value={
+                                                                newNoteDescription
+                                                              }
+                                                              onChange={
+                                                                handleNewNoteDescriptionChange
+                                                              }
+                                                              placeholder="Enter note description"
+                                                            />
+                                                            <div>
+                                                              {newNoteTags.map(
+                                                                (
+                                                                  tag,
+                                                                  index
+                                                                ) => (
+                                                                  <Badge
+                                                                    key={index}
+                                                                    variant="secondary"
+                                                                    className="mr-1"
+                                                                  >
+                                                                    <Input
+                                                                      value={
+                                                                        tag
+                                                                      }
+                                                                      onChange={(
+                                                                        e
+                                                                      ) =>
+                                                                        handleNewNoteTagChange(
+                                                                          index,
+                                                                          e
+                                                                            .target
+                                                                            .value
+                                                                        )
+                                                                      }
+                                                                      placeholder="Enter tag"
+                                                                    />
+                                                                    <Button
+                                                                      onClick={() =>
+                                                                        handleNewNoteTagDelete(
+                                                                          index
+                                                                        )
+                                                                      }
+                                                                    >
+                                                                      Delete
+                                                                    </Button>
+                                                                  </Badge>
+                                                                )
+                                                              )}
+                                                              <Button
+                                                                onClick={
+                                                                  handleNewNoteTagAdd
+                                                                }
+                                                              >
+                                                                Add Tag
+                                                              </Button>
+                                                            </div>
+                                                            <Button
+                                                              onClick={
+                                                                handleSaveNewNote
+                                                              }
+                                                            >
+                                                              Save
+                                                            </Button>
+                                                          </CardContent>
+                                                        </Card>
                                                       )}
                                                     </div>
                                                   )}

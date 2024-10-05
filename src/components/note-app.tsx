@@ -49,7 +49,7 @@ export default function NoteApp() {
           <NoteForm addNote={addNote} filters={filters} />
         </div>
         <div className="lg:col-span-2">
-          <NoteList notes={notes} filters={filters} />
+          <NoteList notes={notes} filters={filters} addNote={addNote} />
         </div>
       </div>
     </div>

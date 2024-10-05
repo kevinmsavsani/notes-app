@@ -5,9 +5,10 @@ import { Note, Filter } from "./note-app";
 
 type NoteListProps = {
   notes: Note[];
+  addNote: (note: Omit<Note, "id">) => void;
 };
 
-export function NoteList({ notes }: NoteListProps) {
+export function NoteList({ notes, addNote }: NoteListProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFilters, setSelectedFilters] = useState<Partial<Filter>>({});
   const [openGroups, setOpenGroups] = useState<{ [key: string]: boolean }>({});
@@ -122,6 +123,7 @@ export function NoteList({ notes }: NoteListProps) {
         toggleGroup={toggleGroup}
         openGroups={openGroups}
         groupBy={groupBy}
+        addNote={addNote}
       />
     </div>
   );
