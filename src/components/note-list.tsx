@@ -1,20 +1,17 @@
-"use client";
-
 import { useState, useMemo, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Note, Filter } from "./note-app";
-import { ChevronRight, ChevronDown } from "lucide-react";
 import { MultiSelectCombobox } from "@/components/multicombobox-shadcn";
+import { Note, Filter } from "./note-app";
+import { ChevronDown, ChevronRight } from "lucide-react"; // Import icons
 
 type NoteListProps = {
   notes: Note[];
-  filters: Filter;
 };
 
-export function NoteList({ notes, filters }: NoteListProps) {
+export function NoteList({ notes }: NoteListProps) {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedFilters, setSelectedFilters] = useState<Partial<Filter>>({});
   const [openGroups, setOpenGroups] = useState<{ [key: string]: boolean }>({});
@@ -32,8 +29,8 @@ export function NoteList({ notes, filters }: NoteListProps) {
         );
 
       const matchesFilters = Object.entries(selectedFilters).every(
-        ([key, value]) =>
-          !value || value.includes(note.filters[key as keyof Filter])
+        ([key, values]) =>
+          !values || values.includes(note.filters[key as keyof Filter])
       );
 
       return matchesSearch && matchesFilters;
@@ -49,6 +46,26 @@ export function NoteList({ notes, filters }: NoteListProps) {
       return result;
     }, {});
   };
+
+  const deriveFilters = (notes) => {
+    const filters: Partial<Filter> = {};
+    notes.forEach((note) => {
+      Object.entries(note.filters).forEach(([key, value]) => {
+        if (!filters[key]) {
+          filters[key] = new Set();
+        }
+        filters[key].add(value);
+      });
+    });
+    return Object.fromEntries(
+      Object.entries(filters).map(([key, valueSet]) => [
+        key,
+        Array.from(valueSet),
+      ])
+    );
+  };
+
+  const filters = useMemo(() => deriveFilters(notes), [notes]);
 
   const groupedByRegion = groupBy(filteredNotes, "filters.region");
 
@@ -93,11 +110,11 @@ export function NoteList({ notes, filters }: NoteListProps) {
       });
     });
     setOpenGroups(initialOpenGroups);
-  }, []);
+  }, [groupedByRegion]);
 
   return (
     <div className="space-y-4">
-      <h2 className="text-xl font-semibold">Notes</h2>
+      <h2 className="text-2xl font-bold">Notes</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
         <div>
           <Label htmlFor="search">Search</Label>
@@ -135,17 +152,17 @@ export function NoteList({ notes, filters }: NoteListProps) {
         const groupedByRating = groupBy(regionNotes, "filters.rating");
         const regionKey = `region-${region}`;
         return (
-          <div key={region} className="p-2 text-sm">
+          <div key={region} className="p-2">
             <div
               className="flex items-center cursor-pointer"
               onClick={() => toggleGroup(regionKey)}
             >
               {openGroups[regionKey] ? (
-                <ChevronDown className="mr-2 h-4 w-4" />
+                <ChevronDown className="mr-2 h-5 w-5" />
               ) : (
-                <ChevronRight className="mr-2 h-4 w-4" />
+                <ChevronRight className="mr-2 h-5 w-5" />
               )}
-              <h3 className="text-lg font-semibold">{region}</h3>
+              <h3 className="text-xl font-semibold">{region}</h3>
             </div>
             {openGroups[regionKey] &&
               Object.entries(groupedByRating).map(([rating, ratingNotes]) => {
@@ -162,7 +179,7 @@ export function NoteList({ notes, filters }: NoteListProps) {
                       ) : (
                         <ChevronRight className="mr-2 h-4 w-4" />
                       )}
-                      <h4 className="text-md font-semibold">{rating}</h4>
+                      <h4 className="text-lg font-semibold">{rating}</h4>
                     </div>
                     {openGroups[ratingKey] &&
                       Object.entries(groupedByBrand).map(
@@ -237,7 +254,7 @@ export function NoteList({ notes, filters }: NoteListProps) {
                                                     </h6>
                                                   </div>
                                                   {openGroups[sectionKey] && (
-                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                                       {sectionNotes.map(
                                                         (note) => (
                                                           <Card key={note.id}>
