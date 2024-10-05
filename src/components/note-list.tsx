@@ -6,15 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Note, Filter } from "./note-app";
-import {
-  ChevronDownCircle,
-  ChevronUpCircle,
-  Circle,
-  List,
-  Minus,
-  Plus,
-  Square,
-} from "lucide-react";
+import { ChevronRight, ChevronDown } from "lucide-react";
 import { MultiSelectCombobox } from "@/components/multicombobox-shadcn";
 
 type NoteListProps = {
@@ -149,9 +141,9 @@ export function NoteList({ notes, filters }: NoteListProps) {
               onClick={() => toggleGroup(regionKey)}
             >
               {openGroups[regionKey] ? (
-                <Minus className="mr-2 h-4 w-4" />
+                <ChevronDown className="mr-2 h-4 w-4" />
               ) : (
-                <Plus className="mr-2 h-4 w-4" />
+                <ChevronRight className="mr-2 h-4 w-4" />
               )}
               <h3 className="text-lg font-semibold">{region}</h3>
             </div>
@@ -166,9 +158,9 @@ export function NoteList({ notes, filters }: NoteListProps) {
                       onClick={() => toggleGroup(ratingKey)}
                     >
                       {openGroups[ratingKey] ? (
-                        <Circle className="mr-2 h-4 w-4" />
+                        <ChevronDown className="mr-2 h-4 w-4" />
                       ) : (
-                        <Circle className="mr-2 h-4 w-4" />
+                        <ChevronRight className="mr-2 h-4 w-4" />
                       )}
                       <h4 className="text-md font-semibold">{rating}</h4>
                     </div>
@@ -187,9 +179,9 @@ export function NoteList({ notes, filters }: NoteListProps) {
                                 onClick={() => toggleGroup(brandKey)}
                               >
                                 {openGroups[brandKey] ? (
-                                  <Square className="mr-2 h-4 w-4" />
+                                  <ChevronDown className="mr-2 h-4 w-4" />
                                 ) : (
-                                  <Square className="mr-2 h-4 w-4" />
+                                  <ChevronRight className="mr-2 h-4 w-4" />
                                 )}
                                 <h5 className="text-md font-semibold">
                                   {brand}
@@ -212,9 +204,9 @@ export function NoteList({ notes, filters }: NoteListProps) {
                                           }
                                         >
                                           {openGroups[categoryKey] ? (
-                                            <ChevronDownCircle className="mr-2 h-4 w-4" />
+                                            <ChevronDown className="mr-2 h-4 w-4" />
                                           ) : (
-                                            <ChevronUpCircle className="mr-2 h-4 w-4" />
+                                            <ChevronRight className="mr-2 h-4 w-4" />
                                           )}
                                           <h6 className="text-md font-semibold">
                                             {category}
@@ -236,16 +228,16 @@ export function NoteList({ notes, filters }: NoteListProps) {
                                                     }
                                                   >
                                                     {openGroups[sectionKey] ? (
-                                                      <List className="mr-2 h-4 w-4" />
+                                                      <ChevronDown className="mr-2 h-4 w-4" />
                                                     ) : (
-                                                      <List className="mr-2 h-4 w-4" />
+                                                      <ChevronRight className="mr-2 h-4 w-4" />
                                                     )}
                                                     <h6 className="text-md font-semibold">
                                                       {section}
                                                     </h6>
                                                   </div>
                                                   {openGroups[sectionKey] && (
-                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                                                       {sectionNotes.map(
                                                         (note) => (
                                                           <Card key={note.id}>
