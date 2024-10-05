@@ -1,17 +1,21 @@
+"use client";
+
 import { useState, useMemo, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { Note, Filter } from "./note-app";
-import { ChevronDownCircle, ChevronUpCircle, Circle, List, Minus, Plus, Square } from "lucide-react";
+import {
+  ChevronDownCircle,
+  ChevronUpCircle,
+  Circle,
+  List,
+  Minus,
+  Plus,
+  Square,
+} from "lucide-react";
+import { MultiSelectCombobox } from "@/components/multicombobox-shadcn";
 
 type NoteListProps = {
   notes: Note[];
@@ -26,6 +30,7 @@ export function NoteList({ notes, filters }: NoteListProps) {
   const toggleGroup = (key: string) => {
     setOpenGroups((prev) => ({ ...prev, [key]: !prev[key] }));
   };
+
   const filteredNotes = useMemo(() => {
     return notes.filter((note) => {
       const matchesSearch =
@@ -35,7 +40,8 @@ export function NoteList({ notes, filters }: NoteListProps) {
         );
 
       const matchesFilters = Object.entries(selectedFilters).every(
-        ([key, value]) => !value || note.filters[key as keyof Filter] === value
+        ([key, value]) =>
+          !value || value.includes(note.filters[key as keyof Filter])
       );
 
       return matchesSearch && matchesFilters;
@@ -115,23 +121,21 @@ export function NoteList({ notes, filters }: NoteListProps) {
             <Label htmlFor={type}>
               {type.charAt(0).toUpperCase() + type.slice(1)}
             </Label>
-            <Select
-              onValueChange={(value) =>
-                setSelectedFilters((prev) => ({ ...prev, [type]: value }))
-              }
-            >
-              <SelectTrigger>
-                <SelectValue placeholder={`Filter by ${type}`} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">All</SelectItem>
-                {options.map((option) => (
-                  <SelectItem key={option} value={option}>
-                    {option}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <MultiSelectCombobox
+              options={options.map((option) => ({ name: option, id: option }))}
+              onSelect={(selectedOptions) => {
+                const selectedValues = selectedOptions.map(
+                  (option) => option.name
+                );
+                setSelectedFilters((prev) => ({
+                  ...prev,
+                  [type]: selectedValues,
+                }));
+              }}
+              placeholder={`Filter by ${type}`}
+              selectedValues={selectedFilters[type] || []} // Pass the selected values
+              size="md" // Adjust size as needed
+            />
           </div>
         ))}
       </div>
@@ -145,9 +149,9 @@ export function NoteList({ notes, filters }: NoteListProps) {
               onClick={() => toggleGroup(regionKey)}
             >
               {openGroups[regionKey] ? (
-                <Minus className="mr-2 h-2 w-2" />
+                <Minus className="mr-2 h-4 w-4" />
               ) : (
-                <Plus className="mr-2 h-2 w-2" />
+                <Plus className="mr-2 h-4 w-4" />
               )}
               <h3 className="text-lg font-semibold">{region}</h3>
             </div>
@@ -162,109 +166,126 @@ export function NoteList({ notes, filters }: NoteListProps) {
                       onClick={() => toggleGroup(ratingKey)}
                     >
                       {openGroups[ratingKey] ? (
-                        <Circle className="mr-2 h-2 w-2" />
+                        <Circle className="mr-2 h-4 w-4" />
                       ) : (
-                        <Circle className="mr-2 h-2 w-2" />
+                        <Circle className="mr-2 h-4 w-4" />
                       )}
                       <h4 className="text-md font-semibold">{rating}</h4>
                     </div>
                     {openGroups[ratingKey] &&
-                      Object.entries(groupedByBrand).map(([brand, brandNotes]) => {
-                        const groupedByCategory = groupBy(
-                          brandNotes,
-                          "filters.category"
-                        );
-                        const brandKey = `${ratingKey}-brand-${brand}`;
-                        return (
-                          <div key={brand} className="pl-4">
-                            <div
-                              className="flex items-center cursor-pointer"
-                              onClick={() => toggleGroup(brandKey)}
-                            >
-                              {openGroups[brandKey] ? (
-                                <Square className="mr-2 h-2 w-2" />
-                              ) : (
-                                <Square className="mr-2 h-2 w-2" />
-                              )}
-                              <h5 className="text-md font-semibold">{brand}</h5>
-                            </div>
-                            {openGroups[brandKey] &&
-                              Object.entries(groupedByCategory).map(
-                                ([category, categoryNotes]) => {
-                                  const groupedBySection = groupBy(
-                                    categoryNotes,
-                                    "filters.section"
-                                  );
-                                  const categoryKey = `${brandKey}-category-${category}`;
-                                  return (
-                                    <div key={category} className="pl-4">
-                                      <div
-                                        className="flex items-center cursor-pointer"
-                                        onClick={() => toggleGroup(categoryKey)}
-                                      >
-                                        {openGroups[categoryKey] ? (
-                                          <ChevronDownCircle className="mr-2 h-2 w-2" />
-                                        ) : (
-                                          <ChevronUpCircle className="mr-2 h-2 w-2" />
-                                        )}
-                                        <h6 className="text-md font-semibold">
-                                          {category}
-                                        </h6>
-                                      </div>
-                                      {openGroups[categoryKey] &&
-                                        Object.entries(groupedBySection).map(
-                                          ([section, sectionNotes]) => {
-                                            const sectionKey = `${categoryKey}-section-${section}`;
-                                            return (
-                                              <div key={section} className="pl-4">
-                                                <div
-                                                  className="flex items-center cursor-pointer"
-                                                  onClick={() =>
-                                                    toggleGroup(sectionKey)
-                                                  }
-                                                >
-                                                  {openGroups[sectionKey] ? (
-                                                    <List className="mr-2 h-2 w-2" />
-                                                  ) : (
-                                                    <List className="mr-2 h-2 w-2" />
-                                                  )}
-                                                  <h6 className="text-md font-semibold">
-                                                    {section}
-                                                  </h6>
-                                                </div>
-                                                {openGroups[sectionKey] && (
-                                                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                                    {sectionNotes.map((note) => (
-                                                      <Card key={note.id}>
-                                                        <CardContent className="p-2">
-                                                          <p>{note.description}</p>
-                                                          <div>
-                                                            {note.tags.map((tag) => (
-                                                              <Badge
-                                                                key={tag}
-                                                                variant="secondary"
-                                                                className="mr-1"
-                                                              >
-                                                                {tag}
-                                                              </Badge>
-                                                            ))}
-                                                          </div>
-                                                        </CardContent>
-                                                      </Card>
-                                                    ))}
-                                                  </div>
-                                                )}
-                                              </div>
-                                            );
+                      Object.entries(groupedByBrand).map(
+                        ([brand, brandNotes]) => {
+                          const groupedByCategory = groupBy(
+                            brandNotes,
+                            "filters.category"
+                          );
+                          const brandKey = `${ratingKey}-brand-${brand}`;
+                          return (
+                            <div key={brand} className="pl-4">
+                              <div
+                                className="flex items-center cursor-pointer"
+                                onClick={() => toggleGroup(brandKey)}
+                              >
+                                {openGroups[brandKey] ? (
+                                  <Square className="mr-2 h-4 w-4" />
+                                ) : (
+                                  <Square className="mr-2 h-4 w-4" />
+                                )}
+                                <h5 className="text-md font-semibold">
+                                  {brand}
+                                </h5>
+                              </div>
+                              {openGroups[brandKey] &&
+                                Object.entries(groupedByCategory).map(
+                                  ([category, categoryNotes]) => {
+                                    const groupedBySection = groupBy(
+                                      categoryNotes,
+                                      "filters.section"
+                                    );
+                                    const categoryKey = `${brandKey}-category-${category}`;
+                                    return (
+                                      <div key={category} className="pl-4">
+                                        <div
+                                          className="flex items-center cursor-pointer"
+                                          onClick={() =>
+                                            toggleGroup(categoryKey)
                                           }
-                                        )}
-                                    </div>
-                                  );
-                                }
-                              )}
-                          </div>
-                        );
-                      })}
+                                        >
+                                          {openGroups[categoryKey] ? (
+                                            <ChevronDownCircle className="mr-2 h-4 w-4" />
+                                          ) : (
+                                            <ChevronUpCircle className="mr-2 h-4 w-4" />
+                                          )}
+                                          <h6 className="text-md font-semibold">
+                                            {category}
+                                          </h6>
+                                        </div>
+                                        {openGroups[categoryKey] &&
+                                          Object.entries(groupedBySection).map(
+                                            ([section, sectionNotes]) => {
+                                              const sectionKey = `${categoryKey}-section-${section}`;
+                                              return (
+                                                <div
+                                                  key={section}
+                                                  className="pl-4"
+                                                >
+                                                  <div
+                                                    className="flex items-center cursor-pointer"
+                                                    onClick={() =>
+                                                      toggleGroup(sectionKey)
+                                                    }
+                                                  >
+                                                    {openGroups[sectionKey] ? (
+                                                      <List className="mr-2 h-4 w-4" />
+                                                    ) : (
+                                                      <List className="mr-2 h-4 w-4" />
+                                                    )}
+                                                    <h6 className="text-md font-semibold">
+                                                      {section}
+                                                    </h6>
+                                                  </div>
+                                                  {openGroups[sectionKey] && (
+                                                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                                                      {sectionNotes.map(
+                                                        (note) => (
+                                                          <Card key={note.id}>
+                                                            <CardContent className="p-2">
+                                                              <p>
+                                                                {
+                                                                  note.description
+                                                                }
+                                                              </p>
+                                                              <div>
+                                                                {note.tags.map(
+                                                                  (tag) => (
+                                                                    <Badge
+                                                                      key={tag}
+                                                                      variant="secondary"
+                                                                      className="mr-1"
+                                                                    >
+                                                                      {tag}
+                                                                    </Badge>
+                                                                  )
+                                                                )}
+                                                              </div>
+                                                            </CardContent>
+                                                          </Card>
+                                                        )
+                                                      )}
+                                                    </div>
+                                                  )}
+                                                </div>
+                                              );
+                                            }
+                                          )}
+                                      </div>
+                                    );
+                                  }
+                                )}
+                            </div>
+                          );
+                        }
+                      )}
                   </div>
                 );
               })}
