@@ -45,7 +45,7 @@ export function NoteCard({ note }: NoteCardProps) {
 
   return (
     <Card key={note.id}>
-      <CardContent className="p-2">
+      <CardContent className="p-2 flex flex-col gap-2">
         {isEditing ? (
           <>
             <Input

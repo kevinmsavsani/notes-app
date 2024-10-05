@@ -31,7 +31,7 @@ export function FilterSection({
         />
       </div>
       {Object.entries(filters).map(([type, options]) => (
-        <div key={type}>
+        <div key={type} className="flex flex-col gap-1">
           <Label htmlFor={type}>
             {type.charAt(0).toUpperCase() + type.slice(1)}
           </Label>
