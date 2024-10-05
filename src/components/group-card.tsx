@@ -69,7 +69,7 @@ export default function GroupCard({
         const groupedByRating = groupBy(regionNotes, "filters.rating");
         const regionKey = `region-${region}`;
         return (
-          <div key={region} className="p-2">
+          <div key={region} className="p-2 gap-4">
             <div
               className="flex items-center cursor-pointer"
               onClick={() => toggleGroup(regionKey)}
@@ -86,7 +86,7 @@ export default function GroupCard({
                 const groupedByBrand = groupBy(ratingNotes, "filters.brand");
                 const ratingKey = `${regionKey}-rating-${rating}`;
                 return (
-                  <div key={rating} className="pl-4">
+                  <div key={rating} className="pl-4 gap-3">
                     <div
                       className="flex items-center cursor-pointer"
                       onClick={() => toggleGroup(ratingKey)}
@@ -107,7 +107,7 @@ export default function GroupCard({
                           );
                           const brandKey = `${ratingKey}-brand-${brand}`;
                           return (
-                            <div key={brand} className="pl-4">
+                            <div key={brand} className="pl-4 gap-2">
                               <div
                                 className="flex items-center cursor-pointer"
                                 onClick={() => toggleGroup(brandKey)}
@@ -130,7 +130,7 @@ export default function GroupCard({
                                     );
                                     const categoryKey = `${brandKey}-category-${category}`;
                                     return (
-                                      <div key={category} className="pl-4">
+                                      <div key={category} className="pl-4 flex flex-col gap-1">
                                         <div
                                           className="flex items-center cursor-pointer"
                                           onClick={() =>
@@ -155,7 +155,7 @@ export default function GroupCard({
                                                   key={section}
                                                   className="pl-4"
                                                 >
-                                                  <div className="flex items-center cursor-pointer">
+                                                  <div className="flex items-center cursor-pointer gap-3">
                                                     <div
                                                       onClick={() =>
                                                         toggleGroup(sectionKey)
@@ -173,7 +173,7 @@ export default function GroupCard({
                                                         {section}
                                                       </h6>
                                                     </div>
-                                                    <button
+                                                    <Button
                                                       onClick={() => {
                                                         handleAddNoteToggle();
                                                         setnewFilters({
@@ -184,10 +184,11 @@ export default function GroupCard({
                                                           section,
                                                         });
                                                       }}
-                                                      className="ml-2 p-1 bg-blue-500 text-white rounded-full"
+                                                      className="p-0 rounded-full"
+                                                      size={'xs'}
                                                     >
                                                       <Plus className="h-4 w-4" />
-                                                    </button>
+                                                    </Button>
                                                   </div>
                                                   {openGroups[sectionKey] && (
                                                     <div className="grid grid-cols-1 gap-4 text-xs">
