@@ -1,0 +1,302 @@
+[
+  {
+    "id": 1,
+    "description": "Great coffee shop with a cozy atmosphere",
+    "tags": ["coffee", "cozy"],
+    "filters": { "region": "North", "rating": "5", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 2,
+    "description": "Fantastic Italian restaurant with authentic dishes",
+    "tags": ["italian", "pasta"],
+    "filters": { "region": "South", "rating": "4", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 3,
+    "description": "Trendy boutique with unique fashion items",
+    "tags": ["fashion", "trendy"],
+    "filters": { "region": "East", "rating": "4", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 4,
+    "description": "Cozy bakery with fresh pastries",
+    "tags": ["bakery", "pastries"],
+    "filters": { "region": "West", "rating": "5", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 5,
+    "description": "Modern sushi bar with a sleek design",
+    "tags": ["sushi", "modern"],
+    "filters": { "region": "North", "rating": "3", "category": "Restaurant", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 6,
+    "description": "Luxury watch store offering exclusive designs",
+    "tags": ["luxury", "watches"],
+    "filters": { "region": "East", "rating": "4", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 7,
+    "description": "Hip coffee spot with artisanal drinks",
+    "tags": ["coffee", "artisanal"],
+    "filters": { "region": "South", "rating": "4", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 8,
+    "description": "Charming Italian deli with fresh sandwiches",
+    "tags": ["deli", "sandwiches"],
+    "filters": { "region": "North", "rating": "5", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 9,
+    "description": "Stylish boutique with designer clothes",
+    "tags": ["designer", "stylish"],
+    "filters": { "region": "West", "rating": "3", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 10,
+    "description": "Artisanal bakery with organic ingredients",
+    "tags": ["bakery", "organic"],
+    "filters": { "region": "East", "rating": "4", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 11,
+    "description": "Authentic Italian restaurant with family recipes",
+    "tags": ["italian", "authentic"],
+    "filters": { "region": "North", "rating": "5", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 12,
+    "description": "Trendy vegan café with organic options",
+    "tags": ["vegan", "organic"],
+    "filters": { "region": "South", "rating": "3", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 13,
+    "description": "Exclusive high-end fashion store",
+    "tags": ["exclusive", "fashion"],
+    "filters": { "region": "West", "rating": "4", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 14,
+    "description": "Rustic café with homemade desserts",
+    "tags": ["desserts", "rustic"],
+    "filters": { "region": "East", "rating": "5", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 15,
+    "description": "Popular Italian eatery with wood-fired pizzas",
+    "tags": ["pizza", "italian"],
+    "filters": { "region": "South", "rating": "4", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 16,
+    "description": "Chic boutique with the latest trends",
+    "tags": ["chic", "trendy"],
+    "filters": { "region": "North", "rating": "3", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 17,
+    "description": "Vibrant coffeehouse with live music",
+    "tags": ["coffee", "music"],
+    "filters": { "region": "West", "rating": "4", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 18,
+    "description": "Elegant restaurant with a fusion menu",
+    "tags": ["fusion", "elegant"],
+    "filters": { "region": "East", "rating": "5", "category": "Restaurant", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 19,
+    "description": "Charming vintage clothing store",
+    "tags": ["vintage", "clothing"],
+    "filters": { "region": "North", "rating": "4", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 20,
+    "description": "Minimalist café with a peaceful vibe",
+    "tags": ["minimalist", "peaceful"],
+    "filters": { "region": "South", "rating": "5", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 21,
+    "description": "Italian bistro with handcrafted pasta",
+    "tags": ["pasta", "handcrafted"],
+    "filters": { "region": "West", "rating": "5", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 22,
+    "description": "Eclectic fashion boutique with unique pieces",
+    "tags": ["unique", "eclectic"],
+    "filters": { "region": "East", "rating": "4", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 23,
+    "description": "Art-filled café with creative drinks",
+    "tags": ["art", "creative"],
+    "filters": { "region": "North", "rating": "3", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 24,
+    "description": "Charming Italian trattoria with outdoor seating",
+    "tags": ["outdoor", "italian"],
+    "filters": { "region": "South", "rating": "4", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 25,
+    "description": "High-end fashion store with runway styles",
+    "tags": ["runway", "fashion"],
+    "filters": { "region": "West", "rating": "4", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 26,
+    "description": "Cozy coffeehouse with a laid-back vibe",
+    "tags": ["coffee", "laid-back"],
+    "filters": { "region": "East", "rating": "5", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 27,
+    "description": "Rustic Italian restaurant with homemade sauces",
+    "tags": ["sauces", "italian"],
+    "filters": { "region": "North", "rating": "4", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 28,
+    "description": "Fashion-forward boutique with modern trends",
+    "tags": ["fashion-forward", "modern"],
+    "filters": { "region": "South", "rating": "5", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 29,
+    "description": "Popular café known for specialty teas",
+    "tags": ["tea", "specialty"],
+    "filters": { "region": "West", "rating": "3", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 30,
+    "description": "Exclusive Italian restaurant with luxury service",
+    "tags": ["luxury", "italian"],
+    "filters": { "region": "East", "rating": "5", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 31,
+    "description": "Artisan fashion shop with handmade items",
+    "tags": ["artisan", "handmade"],
+    "filters": { "region": "North", "rating": "4", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 32,
+    "description": "Modern café with healthy snacks",
+    "tags": ["healthy", "modern"],
+    "filters": { "region": "South", "rating": "4", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 33,
+    "description": "Boutique Italian restaurant with classic dishes",
+    "tags": ["classic", "italian"],
+    "filters": { "region": "West", "rating": "4", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 34,
+    "description": "Luxury clothing store with exclusive collections",
+    "tags": ["luxury", "clothing"],
+    "filters": { "region": "East", "rating": "5", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 35,
+    "description": "Quaint café with a bookish ambiance",
+    "tags": ["bookish", "quaint"],
+    "filters": { "region": "North", "rating": "4", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 36,
+    "description": "Elegant Italian restaurant with a wine bar",
+    "tags": ["wine", "italian"],
+    "filters": { "region": "South", "rating": "3", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 37,
+    "description": "Boutique with eco-friendly fashion",
+    "tags": ["eco-friendly", "fashion"],
+    "filters": { "region": "West", "rating": "4", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 38,
+    "description": "Stylish coffee shop with an industrial vibe",
+    "tags": ["industrial", "stylish"],
+    "filters": { "region": "East", "rating": "5", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 39,
+    "description": "Authentic trattoria with wood-fired grill",
+    "tags": ["grill", "trattoria"],
+    "filters": { "region": "North", "rating": "4", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 40,
+    "description": "Vintage boutique with rare finds",
+    "tags": ["vintage", "rare"],
+    "filters": { "region": "South", "rating": "3", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 41,
+    "description": "Eco-conscious café with plant-based options",
+    "tags": ["eco", "plant-based"],
+    "filters": { "region": "West", "rating": "5", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 42,
+    "description": "Italian eatery known for its rich sauces",
+    "tags": ["sauces", "italian"],
+    "filters": { "region": "East", "rating": "4", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 43,
+    "description": "High-end fashion store with avant-garde pieces",
+    "tags": ["avant-garde", "fashion"],
+    "filters": { "region": "North", "rating": "5", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 44,
+    "description": "Contemporary café with an artsy feel",
+    "tags": ["contemporary", "artsy"],
+    "filters": { "region": "South", "rating": "4", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 45,
+    "description": "Traditional Italian restaurant with rustic charm",
+    "tags": ["rustic", "italian"],
+    "filters": { "region": "West", "rating": "5", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 46,
+    "description": "Trendy clothing boutique with edgy styles",
+    "tags": ["edgy", "trendy"],
+    "filters": { "region": "East", "rating": "4", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 47,
+    "description": "Bright café with light, healthy meals",
+    "tags": ["healthy", "bright"],
+    "filters": { "region": "North", "rating": "4", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  },
+  {
+    "id": 48,
+    "description": "Classic trattoria with a family atmosphere",
+    "tags": ["family", "trattoria"],
+    "filters": { "region": "South", "rating": "4", "category": "Restaurant", "brand": "La Trattoria", "section": "Unknown" }
+  },
+  {
+    "id": 49,
+    "description": "Luxury fashion shop with seasonal collections",
+    "tags": ["seasonal", "luxury"],
+    "filters": { "region": "West", "rating": "5", "category": "Shopping", "brand": "Unknown", "section": "Clothing" }
+  },
+  {
+    "id": 50,
+    "description": "Minimalist café with sleek interior design",
+    "tags": ["minimalist", "sleek"],
+    "filters": { "region": "East", "rating": "4", "category": "Cafe", "brand": "Unknown", "section": "Unknown" }
+  }
+]
