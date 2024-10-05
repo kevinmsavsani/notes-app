@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect } from "react";
 import { FilterSection } from "./filter-section";
-import { GroupDisplay } from "./group-card";
+import GroupCard from "./group-card";
 import { Note, Filter } from "./note-app";
 
 type NoteListProps = {
@@ -105,7 +105,7 @@ export function NoteList({ notes }: NoteListProps) {
       });
     });
     setOpenGroups(initialOpenGroups);
-  }, [groupedByRegion]);
+  }, []);
 
   return (
     <div className="space-y-4">
@@ -117,7 +117,7 @@ export function NoteList({ notes }: NoteListProps) {
         selectedFilters={selectedFilters}
         setSelectedFilters={setSelectedFilters}
       />
-      <GroupDisplay
+      <GroupCard
         groupedNotes={groupedByRegion}
         toggleGroup={toggleGroup}
         openGroups={openGroups}

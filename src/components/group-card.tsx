@@ -1,23 +1,23 @@
-import { ChevronDown, ChevronRight } from "lucide-react";
+import { ChevronDown, ChevronRight, Plus } from "lucide-react";
 import { NoteCard } from "./note-card";
 import { Note } from "./note-app";
 
-type GroupDisplayProps = {
+type GroupCardProps = {
   groupedNotes: { [key: string]: Note[] };
   toggleGroup: (key: string) => void;
   openGroups: { [key: string]: boolean };
   groupBy: (array: Note[], key: string) => { [key: string]: Note[] };
 };
 
-export function GroupDisplay({
+export default function GroupCard({
   groupedNotes,
   toggleGroup,
   openGroups,
   groupBy,
-}: GroupDisplayProps) {
+}: GroupCardProps) {
   return (
     <>
-{Object.entries(groupedNotes).map(([region, regionNotes]) => {
+      {Object.entries(groupedNotes).map(([region, regionNotes]) => {
         const groupedByRating = groupBy(regionNotes, "filters.rating");
         const regionKey = `region-${region}`;
         return (
@@ -107,20 +107,32 @@ export function GroupDisplay({
                                                   key={section}
                                                   className="pl-4"
                                                 >
-                                                  <div
-                                                    className="flex items-center cursor-pointer"
-                                                    onClick={() =>
-                                                      toggleGroup(sectionKey)
-                                                    }
-                                                  >
-                                                    {openGroups[sectionKey] ? (
-                                                      <ChevronDown className="mr-2 h-4 w-4" />
-                                                    ) : (
-                                                      <ChevronRight className="mr-2 h-4 w-4" />
-                                                    )}
-                                                    <h6 className="text-md font-semibold">
-                                                      {section}
-                                                    </h6>
+                                                  <div className="flex items-center cursor-pointer">
+                                                    <div
+                                                      onClick={() =>
+                                                        toggleGroup(sectionKey)
+                                                      }
+                                                      className="flex items-center"
+                                                    >
+                                                      {openGroups[
+                                                        sectionKey
+                                                      ] ? (
+                                                        <ChevronDown className="mr-2 h-4 w-4" />
+                                                      ) : (
+                                                        <ChevronRight className="mr-2 h-4 w-4" />
+                                                      )}
+                                                      <h6 className="text-md font-semibold">
+                                                        {section}
+                                                      </h6>
+                                                    </div>
+                                                    <button
+                                                      onClick={() =>
+                                                        addNote(sectionKey)
+                                                      }
+                                                      className="ml-2 p-1 bg-blue-500 text-white rounded-full"
+                                                    >
+                                                      <Plus className="h-4 w-4" />
+                                                    </button>
                                                   </div>
                                                   {openGroups[sectionKey] && (
                                                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
